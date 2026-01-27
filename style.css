@@ -1,0 +1,466 @@
+:root {
+  --pri: #fcdec0;
+  --sec: #7d5a50;
+  --tri1: #e5b299;
+  --tri2: #b4846c;
+}
+
+@font-face {
+  font-family: aeonik;
+  font-weight: 200;
+  src: url(./Aeonik-Light.ttf);
+}
+@font-face {
+  font-family: aeonik;
+  font-weight: 500;
+  src: url(./Aeonik-Regular.ttf);
+}
+@font-face {
+  font-family: aeonik;
+  font-weight: 700;
+  src: url(./Aeonik-Bold.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: aeonik;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  background-color: var(--tri2);
+}
+nav {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: var(--pri);
+}
+
+section.allElems {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  padding-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+  position: absolute;
+}
+
+.elem {
+  background-color: #feba17;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 300px;
+  width: 222px;
+  position: relative;
+  transition: all ease 0.3s;
+  cursor: pointer;
+  box-shadow: rgba(85, 85, 85, 0.801) 0px 5px 15px;
+}
+
+.elem img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.elem h2 {
+  position: absolute;
+  bottom: 4%;
+  right: 5%;
+  color: white;
+  font-size: 20 px;
+}
+
+.elem:active {
+  scale: 0.97;
+}
+
+.fullElem {
+  height: 100%;
+  width: 100%;
+  background-color: var(--tri2);
+  padding: 40px;
+  display: none;
+  position: absolute;
+}
+
+.back {
+  position: absolute;
+  right: 5%;
+  background-color: var(--sec);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.back:active {
+  scale: 0.95;
+}
+
+.todo-list-fullpage h2 {
+  font-size: 50px;
+}
+.todo-list-fullpage .todo-container {
+  height: 80%;
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todo-list-fullpage .todo-container .addTask {
+  width: 33%;
+  height: 100%;
+  background-color: var(--sec);
+  border-radius: 12px;
+}
+
+.todo-list-fullpage .todo-container .allTask {
+  width: 65%;
+  height: 100%;
+  background-color: var(--sec);
+  border-radius: 12px;
+}
+
+.todo-list-fullpage .todo-container .addTask form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.todo-container .addTask form #task-input {
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 20px;
+  background-color: var(--tri2);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+}
+.todo-container .addTask form textarea {
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 20px;
+  background-color: var(--tri2);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+}
+.todo-container .addTask form button {
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 20px;
+  background-color: var(--pri);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: 700;
+  transition: all ease 0.3s;
+}
+
+.todo-container .addTask form button:active {
+  scale: 0.96;
+}
+
+.todo-container .addTask form textarea::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.todo-container .addTask form input::placeholder {
+  color: white;
+}
+
+.todo-list-fullpage .todo-container .allTask {
+  width: 65%;
+  height: 100%;
+  background-color: var(--sec);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  overflow: auto;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--tri2);
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.task h5 {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.task h5 span {
+  background-color: red;
+  color: var(--pri);
+  font-size: 8px;
+  padding: 4px 5px;
+  border-radius: 50%;
+}
+
+.task h5 span.true {
+  opacity: 1;
+}
+.task h5 span.false {
+  opacity: 0;
+}
+.task button {
+  padding: 15px 30px;
+  color: var(--pri);
+  background-color: rgb(24, 102, 54);
+  border-radius: 12px;
+  border: none;
+  transition: all ease 0.3s;
+  font-weight: 530;
+}
+
+.task button:active {
+  scale: 0.95;
+}
+
+.mark-imp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.mark-imp input {
+  scale: 1;
+}
+
+.mark-imp label {
+  font-size: 15px;
+}
+
+.daily-planner-fullpage h2 {
+  font-size: 50px;
+}
+
+.daily-planner-fullpage .day-planner {
+  background-color: var(--sec);
+  height: 85%;
+  margin-top: 30px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  overflow: auto;
+  justify-content: space-between;
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 49%;
+  margin-bottom: 15px;
+}
+
+.day-planner-time p {
+  position: absolute;
+  top: 10%;
+  left: 3%;
+}
+
+.day-planner-time input {
+  padding: 10px 25px;
+  width: 100%;
+  background-color: var(--tri2);
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  padding-top: 30px;
+  outline: none;
+  color: var(--pri);
+}
+
+.motivational-fullpage {
+  position: relative;
+  overflow: auto;
+}
+
+.motivation-fullpage-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.motivational-fullpage .motivation-container {
+  height: 300px;
+  width: 80%;
+  position: relative;
+  border-radius: 25px;
+}
+
+.motivational-fullpage .motivation-container::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(255, 252, 50, 0.603);
+  border-radius: 50px;
+  scale: 1.15;
+  filter: blur(100px);
+  z-index: 8;
+}
+
+.motivational-fullpage .motivation-container .motivation-wrapper {
+  z-index: 10;
+  position: absolute;
+
+  width: 100%;
+  background-color: var(--pri);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.motivation-1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.motivation-1 h2 {
+  font-size: 25px;
+  font-weight: 500;
+  text-align: right;
+  background-color: var(--tri2);
+  padding: 15px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.motivation-2 {
+  padding: 5px;
+  margin-top: 25px;
+}
+
+.motivation-2 h1 {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.motivation-3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.motivation-3 h2 {
+  padding: 15px;
+  border-radius: 20px;
+  font-size: 20px;
+  width: fit-content;
+  font-weight: 500;
+  text-align: right;
+  background-color: var(--tri2);
+}
+
+.motivational-fullpage .motivation-container .motivation-wrapper img {
+  position: absolute;
+  right: 5%;
+  top: 0.5%;
+  opacity: 0.2;
+}
+
+.pomodoro-fullpage {
+  position: relative;
+  display: block;
+  background-color: #a06c6c;
+}
+
+.pomodoro-fullpage h2{
+  font-size: 50px;
+}
+
+.pomodoro-fullpage .pomo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #ebeaea;
+  width: 550px;
+  height: 350px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.pomodoro-fullpage .pomo>h1{
+font-size: 2.6rem;
+color: #b88100;
+
+}
+.pomodoro-fullpage .pomo>h2{
+  font-size: 70px;
+}
+
+.pomodoro-fullpage .pomo .pomo-btn .btn{
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: none;
+  margin: .6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pomodoro-fullpage .pomo .pomo-btn .start{
+  background-color: green;
+}
+.pomodoro-fullpage .pomo .pomo-btn .stop{
+  background-color: rgb(212, 1, 1);
+}
+.pomodoro-fullpage .pomo .pomo-btn .reset{
+  background-color: rgb(1, 122, 221);
+}
+
+.pomodoro-fullpage .pomo .pomo-btn .interval{
+  background-color: rgb(211, 210, 211);
+}
+
+.pomodoro-fullpage .pomo .pomo-btn button:active{
+  scale: .95;
+}
+
