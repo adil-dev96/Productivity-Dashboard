@@ -129,19 +129,86 @@ function motivationQuote() {
 
 motivationQuote();
 
-let start = document.getElementById("start");
-let stop = document.getElementById("stop");
-let reset = document.getElementById("reset");
-let interval = document.getElementById("interval");
+function pomodoro(){
+let start = document.querySelector('.start')
+let stop = document.querySelector('.stop')
+let reset = document.querySelector('.reset')
+let interval = document.querySelector('.interval')
+let timer = document.querySelector('.timer')
 
-let timeLeft = 1500;
-let meantime;
+let timeLeft = 25*60;
+let intervalid = null;
+let mode = 'work';
 
-const updateTimer = () => {
-  const minute = Math.floor(timeLeft / 60);
-  const second = timeLeft % 60;
 
-  timer.innerHTML =
- ` ${minute.toString().padStart(2,"0")}:${second.toString().padStart(2,"0")}` 
-};
+const updateTimer = ()=>{
+  let minute = Math.floor(timeLeft/60)
+  let second = timeLeft%60
+  timer.innerHTML = `${minute.toString().padStart(2,'0')}:${second.toString().padStart(2,'0')}`
+}
+
+function switchMode(){
+clearInterval(intervalid);
+intervalid = null;
+if(mode === 'work'){
+  mode = 'break';
+  timeLeft = 5*60;
+
+}else{
+  mode = 'work';
+  timeLeft = 25*60
+}
+
+updateTimer()
+startTimer()
+}
+
+const startTimer = ()=>{
+  if (intervalid) return;
+
+  intervalid = setInterval(()=>{
+    timeLeft --;
+    updateTimer();
+
+    if(timeLeft === 0){
+      switchMode()
+    }
+  },1000)
+}
+
+const stopTimer=()=>{
+  clearInterval(intervalid);
+    intervalid=null;
+  
+}
+
+const resetTimer = ()=>{
+  clearInterval(intervalid);
+  intervalid=null;
+  mode = 'work';
+  timeLeft = 25*60;
+  updateTimer();
+}
+
+function startBreak(){
+  clearInterval(intervalid);
+  intervalid=null;
+  mode = 'break';
+  timeLeft =5*60;
+  updateTimer();
+  startTimer();
+}
+
+
+start.addEventListener('click', startTimer)
+stop.addEventListener('click', stopTimer)
+reset.addEventListener('click',resetTimer)
+interval.addEventListener('click',startBreak)
+
+updateTimer()
+
+
+}
+
+pomodoro()
 

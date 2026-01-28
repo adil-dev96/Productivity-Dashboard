@@ -403,8 +403,7 @@ section.allElems {
 
 .pomodoro-fullpage {
   position: relative;
-  display: block;
-  background-color: #a06c6c;
+   background-color: #a06c6c;
 }
 
 .pomodoro-fullpage h2{
