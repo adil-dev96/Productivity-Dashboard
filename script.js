@@ -129,86 +129,106 @@ function motivationQuote() {
 
 motivationQuote();
 
-function pomodoro(){
-let start = document.querySelector('.start')
-let stop = document.querySelector('.stop')
-let reset = document.querySelector('.reset')
-let interval = document.querySelector('.interval')
-let timer = document.querySelector('.timer')
+function pomodoro() {
+  let start = document.querySelector(".start");
+  let stop = document.querySelector(".stop");
+  let reset = document.querySelector(".reset");
+  let interval = document.querySelector(".interval");
+  let timer = document.querySelector(".timer");
 
-let timeLeft = 25*60;
-let intervalid = null;
-let mode = 'work';
+  let timeLeft = 25 * 60;
+  let intervalid = null;
+  let mode = "work";
 
+  const updateTimer = () => {
+    let minute = Math.floor(timeLeft / 60);
+    let second = timeLeft % 60;
+    timer.innerHTML = `${minute.toString().padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
+  };
 
-const updateTimer = ()=>{
-  let minute = Math.floor(timeLeft/60)
-  let second = timeLeft%60
-  timer.innerHTML = `${minute.toString().padStart(2,'0')}:${second.toString().padStart(2,'0')}`
-}
-
-function switchMode(){
-clearInterval(intervalid);
-intervalid = null;
-if(mode === 'work'){
-  mode = 'break';
-  timeLeft = 5*60;
-
-}else{
-  mode = 'work';
-  timeLeft = 25*60
-}
-
-updateTimer()
-startTimer()
-}
-
-const startTimer = ()=>{
-  if (intervalid) return;
-
-  intervalid = setInterval(()=>{
-    timeLeft --;
-    updateTimer();
-
-    if(timeLeft === 0){
-      switchMode()
+  function switchMode() {
+    clearInterval(intervalid);
+    intervalid = null;
+    if (mode === "work") {
+      mode = "break";
+      timeLeft = 5 * 60;
+    } else {
+      mode = "work";
+      timeLeft = 25 * 60;
     }
-  },1000)
-}
 
-const stopTimer=()=>{
-  clearInterval(intervalid);
-    intervalid=null;
-  
-}
+    updateTimer();
+    startTimer();
+  }
 
-const resetTimer = ()=>{
-  clearInterval(intervalid);
-  intervalid=null;
-  mode = 'work';
-  timeLeft = 25*60;
+  const startTimer = () => {
+    if (intervalid) return;
+
+    intervalid = setInterval(() => {
+      timeLeft--;
+      updateTimer();
+
+      if (timeLeft === 0) {
+        switchMode();
+      }
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(intervalid);
+    intervalid = null;
+  };
+
+  const resetTimer = () => {
+    clearInterval(intervalid);
+    intervalid = null;
+    mode = "work";
+    timeLeft = 25 * 60;
+    updateTimer();
+  };
+
+  function startBreak() {
+    clearInterval(intervalid);
+    intervalid = null;
+    mode = "break";
+    timeLeft = 5 * 60;
+    updateTimer();
+    startTimer();
+  }
+
+  start.addEventListener("click", startTimer);
+  stop.addEventListener("click", stopTimer);
+  reset.addEventListener("click", resetTimer);
+  interval.addEventListener("click", startBreak);
+
   updateTimer();
 }
 
-function startBreak(){
-  clearInterval(intervalid);
-  intervalid=null;
-  mode = 'break';
-  timeLeft =5*60;
-  updateTimer();
-  startTimer();
+pomodoro();
+
+const goalInput = document.getElementById('goalInput')
+const goalBtn = document.querySelector('.goal-btn')
+const goalForm = document.getElementById('gaolForm')
+const goalContainer = document.querySelector('.goalContainer')
+
+function randomColor(){
+  const r = Math.floor(Math.random()*156)+ 50;
+  const g = Math.floor(Math.random()*156)+ 50;
+  const b= Math.floor(Math.random()*156)+ 50;
+ const a = .85;
+ return`rgba(${r},${g},${b},${a})`
 }
 
-
-start.addEventListener('click', startTimer)
-stop.addEventListener('click', stopTimer)
-reset.addEventListener('click',resetTimer)
-interval.addEventListener('click',startBreak)
-
-updateTimer()
-
-
+function getStoredGoals(){
+  return JSON.parse(localStorage.getItem('dailyGoals'))||[]
 }
 
-pomodoro()
+  function saveGoals(goals){
+    localStorage.setItem("dailyGoals" , JSON.stringify(goals))
+  }
+
+goalForm.addEventListener('submit',function(e){
+e.preventDefault();
+})
+
 

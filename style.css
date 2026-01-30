@@ -463,3 +463,55 @@ color: #b88100;
   scale: .95;
 }
 
+.daily-goals-fullpage{
+  display: block;
+}
+
+#goalForm{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+  gap: 3rem;
+}
+#goalInput{
+  min-height: 250px;
+  min-width: 300px;
+  padding: 1rem;
+  font-size: 22px;
+  resize: none;
+  border-radius: 8px;
+  background-color: var(--sec);
+  color: var(--pri);
+  border: none;
+  outline: none;  
+}
+
+
+#goalInput::placeholder{
+  color: var(--pri);
+}
+
+#goalInput:focus {
+  outline: none;
+  border-color: #8a4d24;   /* soft highlight */
+  box-shadow: 0 0 0 2px rgba(214, 214, 214, 0.3);
+}
+.goal-btn{
+  align-self: center;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  background: var(--sec);
+  color: var(--pri);
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid rgb(253, 253, 253) ;
+}
+
+.goal-btn:active{
+  scale: .95;
+}
+
+
+
