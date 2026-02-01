@@ -206,29 +206,50 @@ function pomodoro() {
 
 pomodoro();
 
-const goalInput = document.getElementById('goalInput')
-const goalBtn = document.querySelector('.goal-btn')
-const goalForm = document.getElementById('gaolForm')
-const goalContainer = document.querySelector('.goalContainer')
 
-function randomColor(){
-  const r = Math.floor(Math.random()*156)+ 50;
-  const g = Math.floor(Math.random()*156)+ 50;
-  const b= Math.floor(Math.random()*156)+ 50;
- const a = .85;
- return`rgba(${r},${g},${b},${a})`
+
+let currentGoals = [
+  {
+    task: "learn backend",
+    done: "true",
+  },
+  {
+    task: "learn react",
+    done: "false",
+  },
+  {
+    task: "learn frontend",
+    done: "false",
+  },
+];
+
+function renderGoal() {
+  let goalsContainer = document.querySelector(".goalsContainer");
+  let sum = "";
+  currentGoals.forEach(function (elem) {
+    sum =
+      sum +
+      `<div class="allgoals">
+                <h2>${elem.task}</h2>
+                <div class="goalButton">
+                  <button class="goalDone">Done</button>
+                  <button class="goalDelete">Delete</button>
+                </div>
+              </div>`;
+  });
+
+  goalsContainer.innerHTML = sum;
 }
 
-function getStoredGoals(){
-  return JSON.parse(localStorage.getItem('dailyGoals'))||[]
-}
+renderGoal();
 
-  function saveGoals(goals){
-    localStorage.setItem("dailyGoals" , JSON.stringify(goals))
-  }
+let goalForm = document.getElementById("goalForm");
+let input = document.getElementById("goalInput");
 
 goalForm.addEventListener('submit',function(e){
-e.preventDefault();
+  e.preventDefault()
+  console.log(currentGoals);
+  currentGoals.push({task:input.value})
+  input.value=''
+  renderGoal()
 })
-
-
