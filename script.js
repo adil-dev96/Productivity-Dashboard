@@ -206,50 +206,52 @@ function pomodoro() {
 
 pomodoro();
 
+function dailyGoals() {
+  var currentGoals = [];
+  if (localStorage.getItem("currentGoals")) {
+    currentGoals = JSON.parse(localStorage.getItem("currentGoals"));
+  }
 
-
-let currentGoals = [
-  {
-    task: "learn backend",
-    done: "true",
-  },
-  {
-    task: "learn react",
-    done: "false",
-  },
-  {
-    task: "learn frontend",
-    done: "false",
-  },
-];
-
-function renderGoal() {
-  let goalsContainer = document.querySelector(".goalsContainer");
-  let sum = "";
-  currentGoals.forEach(function (elem) {
-    sum =
-      sum +
-      `<div class="allgoals">
+  function renderGoal() {
+    let goalsContainer = document.querySelector(".goalsContainer");
+    let sum = "";
+    currentGoals.forEach(function (elem, idx) {
+      sum =
+        sum +
+        `<div class="allgoals">
                 <h2>${elem.task}</h2>
                 <div class="goalButton">
-                  <button class="goalDone">Done</button>
-                  <button class="goalDelete">Delete</button>
+                  <button class="goalDone" data-index="${idx}" >Done</button>
+                  <button class="goalDelete" data-index ="${idx}">Delete</button>
                 </div>
               </div>`;
-  });
+    });
 
-  goalsContainer.innerHTML = sum;
+    goalsContainer.innerHTML = sum;
+
+    document.querySelectorAll(".goalDone, .goalDelete").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        let index = btn.dataset.index;
+        currentGoals.splice(index, 1);
+        localStorage.setItem("currentGoals", JSON.stringify(currentGoals));
+        renderGoal();
+      });
+    });
+  }
+
+  renderGoal();
+
+  let goalForm = document.getElementById("goalForm");
+  let input = document.getElementById("goalInput");
+
+  goalForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log(currentGoals);
+    currentGoals.push({ task: input.value });
+    input.value = "";
+    localStorage.setItem("currentGoals", JSON.stringify(currentGoals));
+    renderGoal();
+  });
 }
 
-renderGoal();
-
-let goalForm = document.getElementById("goalForm");
-let input = document.getElementById("goalInput");
-
-goalForm.addEventListener('submit',function(e){
-  e.preventDefault()
-  console.log(currentGoals);
-  currentGoals.push({task:input.value})
-  input.value=''
-  renderGoal()
-})
+dailyGoals();

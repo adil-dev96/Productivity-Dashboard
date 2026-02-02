@@ -463,7 +463,6 @@ section.allElems {
 }
 
 .daily-goals-fullpage {
-  display: block;
   height: fit-content;
 }
 
@@ -524,7 +523,6 @@ section.allElems {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  
 }
 
 .allgoals {
@@ -533,7 +531,7 @@ section.allElems {
   background-color: var(--tri1);
   border-radius: 8px;
   padding: 1.5rem;
-overflow:hidden ;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
